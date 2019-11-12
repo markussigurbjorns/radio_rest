@@ -12,6 +12,6 @@ defmodule RadioRestWeb.Router do
 
     post "/:id", RadioController, :create
     post "/:id/location",RadioController, :update
-    get "/:id/location",RadioController, :show
+    get "/:id/location",RadioController,  :show
   end
 end

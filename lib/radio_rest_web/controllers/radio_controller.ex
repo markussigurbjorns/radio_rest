@@ -17,11 +17,17 @@ defmodule RadioRestWeb.RadioController do
       |> put_status(:created)
       |> put_resp_header("location", Routes.radio_path(conn, :show, radio))
       |> render("show.json", radio: radio)
-    else  {:error, _} ->
-      conn
-      |> put_status(:forbidden)
     end
   end
+
+  
+  
+  def get_location(conn, %{"id" => id, "location" => location}) do
+    if location != nil do
+     radio = Management.get_location(id)
+     render(conn, "show.json", radio: radio)
+    end
+  end  
 
   def show(conn, %{"id" => id}) do
     radio = Management.get_radio!(id)

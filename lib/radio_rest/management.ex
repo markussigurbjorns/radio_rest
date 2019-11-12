@@ -8,6 +8,19 @@ defmodule RadioRest.Management do
 
   alias RadioRest.Management.Radio
 
+  def is_loc_nil(%Radio{} = radio, attrs) do
+    radio
+    |> Radio.check_if_location(attrs)
+  end
+
+  def get_location(id) do
+    query = from u in Radio, where: 
+            u.id == type(^id, :integer),
+            select: u.location
+    query
+    |> Repo.all
+  end
+
   @doc """
   Returns the list of radios.
 
